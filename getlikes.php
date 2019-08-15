@@ -7,6 +7,7 @@
  */
 require_once 'vkapi.php';
 require_once 'db.php';
+require_once 'screen.php';
         $counter = wallGet()->response->count;
         $ids = array();
         $posts = array();
@@ -88,3 +89,12 @@ function getDiffArrays($newArray,$etArray){
         return FALSE;
     endif;
 }         
+
+function showMainMenu($uid){
+    $labels = array(
+        'Заказ экскурсий',
+        'Горячие предложения'
+    );
+    $scr = new Screen(MAIN_MENU_OFFSET, $labels, MAIN_MENU_MSG);
+    $scr->show($uid);
+}

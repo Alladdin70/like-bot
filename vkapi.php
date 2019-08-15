@@ -46,3 +46,16 @@ function getLikes($id, $offset=0){
     $response =file_get_contents(GET_LIKES.http_build_query($param));
     return json_decode($response);
 }
+
+function messageSend($uid,$messsage,$keyboard=HIDE_KEYBOARD, $attachment =''){
+    $rid = rand(1, (int)pow(10,32));
+    $param = array(
+        'user_id' =>$uid,
+        'access_token' => GROUP_TOKEN,
+        'random_id' => $rid,
+        'message' => $messsage,
+        'keyboard' => $keyboard,
+        'attachment' => $attachment,
+        'v'=> VERSION);
+    return file_get_contents(MESSAGE_SEND.http_build_query($param));
+}
